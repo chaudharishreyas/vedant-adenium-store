@@ -179,9 +179,9 @@
     z-index: 1;
     width: 100%;
     margin-top: 0;
-    border-top-color: rgb(255 255 255 / 35%);
-    background: transparent;
-    color: rgb(255 255 255 / 84%);
+    border-top-color: transparent;
+    background: #73513a;
+    color: #fff8ed;
   }
   .hero-bottom span {
     color: inherit;
@@ -274,9 +274,9 @@
     z-index: 1;
     width: 100%;
     margin-top: 0;
-    border-top-color: rgb(255 255 255 / 35%);
-    background: transparent;
-    color: rgb(255 255 255 / 84%);
+    border-top-color: transparent;
+    background: #73513a;
+    color: #fff8ed;
   }
   .hero-bottom span {
     color: inherit;
