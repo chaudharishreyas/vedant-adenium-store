@@ -8,7 +8,7 @@ A responsive public storefront plus a password-protected nursery admin page. Cus
 - Plant catalogue loaded from Supabase
 - WhatsApp order buttons with plant name, variety and price prefilled
 - Admin login, add/edit/delete plant listings
-- Upload JPG, PNG or WebP plant photos to Supabase Storage
+- Upload JPG, PNG or WebP plant photos to Supabase Storage and serve them through the app
 - Server-side input validation, session cookie, login rate limit and basic security headers
 - No online payment or checkout backend (orders are handled manually on WhatsApp)
 

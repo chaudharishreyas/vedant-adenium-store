@@ -74,6 +74,22 @@ function validPlant(body) {
   };
 }
 
+function photoDisplayUrl(imageUrl) {
+  if (!supabase || !imageUrl) return imageUrl;
+  try {
+    const image = new URL(imageUrl);
+    const project = new URL(process.env.SUPABASE_URL);
+    const bucket = process.env.SUPABASE_STORAGE_BUCKET || "plant-photos";
+    const prefix = `/storage/v1/object/public/${bucket}/`;
+    if (image.origin !== project.origin || !image.pathname.startsWith(prefix)) return imageUrl;
+    const filename = decodeURIComponent(image.pathname.slice(prefix.length));
+    if (!/^\d+-[a-z0-9]+\.(?:jpg|png|webp)$/i.test(filename)) return imageUrl;
+    return `/api/photos/${encodeURIComponent(filename)}`;
+  } catch {
+    return imageUrl;
+  }
+}
+
 app.get("/api/health", (req, res) => res.json({ ok: true, app: "Vedant Adenium" }));
 
 app.get("/api/public-contact", (req, res) => {
@@ -94,7 +110,34 @@ app.get("/api/plants", requireDb, async (req, res) => {
     .order("featured", { ascending: false })
     .order("created_at", { ascending: false });
   if (error) return res.status(500).json({ error: "Could not load plants." });
-  res.json({ plants: data || [] });
+  res.json({
+    plants: (data || []).map((plant) => ({
+      ...plant,
+      display_image_url: photoDisplayUrl(plant.image_url)
+    }))
+  });
+});
+
+app.get("/api/photos/:filename", requireDb, async (req, res) => {
+  const { filename } = req.params;
+  if (!/^\d+-[a-z0-9]+\.(?:jpg|png|webp)$/i.test(filename)) {
+    return res.status(400).send("Invalid photo filename.");
+  }
+
+  const bucket = process.env.SUPABASE_STORAGE_BUCKET || "plant-photos";
+  const { data, error } = await supabase.storage.from(bucket).download(filename);
+  if (error || !data) {
+    console.error("Could not load plant photo from Supabase Storage:", error?.message || "No photo data returned.");
+    return res.status(502).send("Could not load plant photo from storage.");
+  }
+
+  const contentTypes = { jpg: "image/jpeg", png: "image/png", webp: "image/webp" };
+  const extension = filename.split(".").pop().toLowerCase();
+  res.set({
+    "Cache-Control": "public, max-age=31536000, immutable",
+    "Content-Type": contentTypes[extension]
+  });
+  res.send(Buffer.from(await data.arrayBuffer()));
 });
 
 app.post("/api/admin/login", loginLimiter, (req, res) => {

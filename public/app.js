@@ -20,7 +20,7 @@ function money(value) {
   return new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(Number(value || 0));
 }
 function plantCard(plant, index) {
-  const image = plant.image_url || fallbackImages[index % fallbackImages.length];
+  const image = plant.display_image_url || plant.image_url || fallbackImages[index % fallbackImages.length];
   const status = plant.availability || "Available";
   const sold = status === "Sold out";
   const message = `Hello Vedant Adenium! I am interested in this plant:\nPlant: ${plant.name}\nVariety: ${plant.variety || "Not specified"}\nPrice: ${money(plant.price)}\nPlease confirm availability and delivery charges.`;

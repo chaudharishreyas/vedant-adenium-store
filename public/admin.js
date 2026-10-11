@@ -59,7 +59,7 @@ async function loadAdminPlants() {
     $("#plant-count").textContent = adminPlants.length;
     $("#admin-plants").innerHTML = adminPlants.length ? adminPlants.map((plant) => `
       <article class="admin-plant">
-        <img src="${escapeHtml(plant.image_url || "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=200&q=75")}" alt="">
+        <img src="${escapeHtml(plant.display_image_url || plant.image_url || "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=200&q=75")}" alt="">
         <div><h3>${escapeHtml(plant.name)}</h3><p>${escapeHtml(plant.variety || "Adenium")} · ${escapeHtml(plant.availability)}</p><strong>${money(plant.price)}</strong></div>
         <div class="plant-actions"><button class="secondary" data-edit="${plant.id}">Edit</button><button class="secondary delete-button" data-delete="${plant.id}">Delete</button></div>
       </article>`).join("") : '<div class="empty-list">No plants yet. Add your first adenium using the form.</div>';
@@ -103,7 +103,7 @@ $("#admin-plants").addEventListener("click", async (event) => {
     $("#form-title").textContent = "Edit plant";
     $("#save-button").innerHTML = 'Update plant <span>→</span>';
     $("#image-preview-wrap").hidden = !currentImageUrl;
-    if (currentImageUrl) $("#image-preview").src = currentImageUrl;
+    if (currentImageUrl) $("#image-preview").src = plant.display_image_url || currentImageUrl;
     showMessage("");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
