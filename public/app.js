@@ -86,7 +86,7 @@ function moveHeroSlide(direction) {
 }
 function startHeroSlideshow() {
   if (heroSlideTimer || heroImages.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  heroSlideTimer = window.setInterval(() => moveHeroSlide(1), 5000);
+  heroSlideTimer = window.setInterval(() => moveHeroSlide(1), 2000);
 }
 function stopHeroSlideshow() {
   window.clearInterval(heroSlideTimer);
