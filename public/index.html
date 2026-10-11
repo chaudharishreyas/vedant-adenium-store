@@ -6,11 +6,17 @@
   <meta name="theme-color" content="#173f32">
   <meta name="description" content="Explore beautiful adenium desert rose plants at Vedant Adenium. Browse plants and order directly on WhatsApp.">
   <title>Vedant Adenium — Desert Roses, Grown with Care</title>
+  <script>
+    try {
+      if (localStorage.getItem("va-theme") === "dark") document.documentElement.dataset.theme = "dark";
+    } catch {}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="/brand.css">
   <link rel="stylesheet" href="/gallery.css">
+  <link rel="stylesheet" href="/theme.css">
 </head>
 <body>
   <div class="announcement">DESERT ROSES · GROWN WITH CARE</div>
@@ -19,7 +25,10 @@
       <img class="brand-logo" src="/vedant-adenium-logo.png" alt="Vedant Adenium Nursery">
     </a>
     <nav><a href="#plants">Our plants</a><a href="#about">Our story</a><a href="#care">Plant care</a></nav>
-    <a class="header-cta" href="#plants">Explore plants <span>↗</span></a>
+    <div class="header-actions">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch to dark theme"><span aria-hidden="true">☾</span></button>
+      <a class="header-cta" href="#plants">Explore plants <span>↗</span></a>
+    </div>
   </header>
   <main>
     <section class="hero">

@@ -22,6 +22,24 @@ function escapeHtml(value = "") {
 function money(value) {
   return new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(Number(value || 0));
 }
+const themeToggle = $("#theme-toggle");
+function setTheme(theme) {
+  const isDark = theme === "dark";
+  document.documentElement.dataset.theme = isDark ? "dark" : "light";
+  themeToggle.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} theme`);
+  themeToggle.title = `Switch to ${isDark ? "light" : "dark"} theme`;
+  themeToggle.querySelector("span").textContent = isDark ? "☀" : "☾";
+}
+setTheme(document.documentElement.dataset.theme === "dark" ? "dark" : "light");
+themeToggle.addEventListener("click", () => {
+  const theme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  setTheme(theme);
+  try {
+    localStorage.setItem("va-theme", theme);
+  } catch (error) {
+    console.warn("Could not save the theme preference.", error);
+  }
+});
 function plantCard(plant, index) {
   const image = plant.display_image_url || plant.image_url || fallbackImages[index % fallbackImages.length];
   const status = plant.availability || "Available";
