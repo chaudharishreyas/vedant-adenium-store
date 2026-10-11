@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/gallery.css">
 </head>
 <body>
   <div class="announcement">DESERT ROSES · GROWN WITH CARE</div>
@@ -29,11 +30,13 @@
         <div class="hero-note"><span class="note-icon">✳</span><span><b>Handpicked with care</b><small>Beautiful plants, personal service</small></span></div>
       </div>
       <div class="hero-art">
-        <img src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1200&q=85" alt="Lush green plants in a warm botanical setting" onerror="this.style.display='none'">
+        <div class="hero-slides">
+          <img class="hero-slide" id="hero-photo" alt="">
+        </div>
         <div class="hero-stamp"><span>GROWN</span><b>with</b><span>CARE ♡</span></div>
         <div class="hero-caption">Nature's little showstopper.</div>
       </div>
-      <div class="hero-bottom">ROOTED IN NATURE <span>✳</span> MADE FOR YOUR SPACE <span>✳</span> GROWN WITH LOVE</div>
+      <div class="hero-bottom"><span>ROOTED IN NATURE</span><span>MADE FOR YOUR SPACE</span><span>GROWN WITH LOVE</span></div>
     </section>
     <section class="intro" id="about">
       <div class="intro-label">WELCOME TO OUR NURSERY</div>
@@ -49,6 +52,10 @@
       <div class="plant-grid" id="plant-grid"><div class="loading-card">Growing something beautiful…</div></div>
       <div class="catalogue-note">♡ Want help choosing? <a id="general-whatsapp" href="#">Chat with us on WhatsApp</a></div>
     </section>
+    <dialog class="photo-lightbox" id="photo-lightbox" aria-label="Plant photo">
+      <button class="photo-lightbox-close" type="button" aria-label="Close photo">×</button>
+      <img id="photo-lightbox-image" alt="">
+    </dialog>
     <section class="care-band" id="care">
       <div class="care-ornament">✿</div><p class="eyebrow">A LITTLE CARE GOES A LONG WAY</p><h2>Sunshine, patience<br>and a little <em>love.</em></h2>
       <div class="care-points"><div><span>01</span><b>Bright sunlight</b><p>Adeniums love plenty of light. Introduce direct sun gradually.</p></div><div><span>02</span><b>Water thoughtfully</b><p>Let the growing medium dry between waterings; avoid waterlogging.</p></div><div><span>03</span><b>Well-draining soil</b><p>Choose a free-draining mix and a pot with drainage holes.</p></div></div>
