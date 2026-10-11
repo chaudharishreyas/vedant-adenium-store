@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Nursery Admin — Vedant Adenium</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+  <header class="admin-header"><a class="brand" href="/"><span class="mark">✿</span><span><b>VEDANT ADENIUM</b><small>NURSERY ADMIN</small></span></a><a href="/">← View storefront</a></header>
+  <main class="admin-main">
+    <section id="login-panel" class="panel login-panel">
+      <p class="eyebrow">PRIVATE NURSERY DASHBOARD</p><h1>Welcome back.</h1><p class="muted">Sign in to add plants, update prices and manage your catalogue.</p>
+      <form id="login-form"><label>Admin password<input type="password" id="admin-password" required autocomplete="current-password" placeholder="Enter your admin password"></label><button class="primary" type="submit">Sign in <span>→</span></button><p id="login-error" class="error" role="status"></p></form>
+      <p class="hint">The password is configured privately in your hosting environment. It is not stored in this page.</p>
+    </section>
+    <section id="dashboard" hidden>
+      <div class="dashboard-heading"><div><p class="eyebrow">YOUR PLANT COLLECTION</p><h1>Plant manager</h1><p class="muted">Add a new adenium or edit a listing already on your website.</p></div><button id="logout" class="secondary">Log out</button></div>
+      <div class="dashboard-grid">
+        <section class="panel form-panel"><div class="form-heading"><h2 id="form-title">Add a plant</h2><p class="muted">Fields marked * are required.</p></div>
+          <form id="plant-form">
+            <input type="hidden" id="plant-id">
+            <label>Plant name *<input id="name" required maxlength="120" placeholder="e.g. Pink Double Bloom"></label>
+            <div class="two-col"><label>Variety / flower type<input id="variety" maxlength="120" placeholder="e.g. Double pink"></label><label>Price (₹) *<input id="price" required type="number" min="0" step="1" placeholder="499"></label></div>
+            <label>Plant description<textarea id="description" rows="3" maxlength="2000" placeholder="Describe the plant, bloom and caudex..."></textarea></label>
+            <div class="two-col"><label>Plant size<input id="size" maxlength="120" placeholder="e.g. 6-inch pot"></label><label>Availability<select id="availability"><option>Available</option><option>Limited</option><option>Sold out</option></select></label></div>
+            <label>Plant photo<input id="image-file" type="file" accept="image/jpeg,image/png,image/webp"><small>JPG, PNG or WebP · maximum 5 MB</small></label>
+            <div id="image-preview-wrap" class="image-preview-wrap" hidden><img id="image-preview" alt="Plant photo preview"><button type="button" id="remove-image" class="text-button">Remove photo</button></div>
+            <label class="check-label"><input id="featured" type="checkbox"> Feature this plant near the top of the catalogue</label>
+            <div class="form-actions"><button class="primary" type="submit" id="save-button">Save plant <span>→</span></button><button class="secondary" type="button" id="reset-form">Clear form</button></div>
+            <p id="form-message" class="message" role="status"></p>
+          </form>
+        </section>
+        <section class="panel list-panel"><div class="list-heading"><div><h2>Your plants</h2><p class="muted"><span id="plant-count">0</span> listings</p></div><button id="refresh" class="secondary">Refresh</button></div><div id="admin-plants" class="admin-plants"><p class="muted">Loading your catalogue…</p></div></section>
+      </div>
+    </section>
+  </main>
+  <script src="/admin.js"></script>
+</body>
+</html>
